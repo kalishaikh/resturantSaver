@@ -2,16 +2,23 @@
   "name": "frest-app",
   "version": "0.0.0",
   "scripts": {
+    "heroku-postbuild": "ng build --prod",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "devStart": "nodemon server.js"
   },
+  "engines": {
+    "node": "14.16.1",
+    "npm": "6.14.12"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~12.2.0",
+    "@angular/cli": "~12.2.0",
+    "@angular/compiler-cli": "~12.2.0",
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.2.0",
