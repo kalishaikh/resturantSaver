@@ -1,0 +1,59 @@
+<!-- Navbar  -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+    <h3>Welcome Back {{name}}</h3>
+    <div class="ml-auto">
+        <button type="submit" class="btn float-right" (click)="logout()" class="btn btn-primary">Logout</button>
+    </div>
+</nav>
+
+<div class="row">
+  <div *ngIf="resturants.length != 0" class="col">
+    <div  class="leftside">
+        <!-- Custom Table -->
+      <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Resturant Name</th>
+          <th scope="col">Address</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let entry of resturants">
+        <tr (click)="searchClickedRow($event)">
+          <th scope="row" >{{ entry.name }}</th>
+          <td class="address" id="addy">{{ entry.address }}</td>
+          <td>
+            <button type="button" (click)="deleteResturant($event)" class="btn btn-danger btn-circle btn-sm ml-2"><i class="fa fa-trash" aria-hidden="true"></i></button>
+          </td>
+        </tr>
+      </tbody>
+      </table>
+      <button type="button" (click)="addResturant()" class="btn btn-success btn-lg btn-block">Add A New Resturant!</button>
+    </div>
+  </div>
+
+
+    <div *ngIf="resturants.length == 0"  class="col">
+      <div  class="leftside">
+        <h2 class="text-center">Oh no! You have no resturants! </h2>
+        <button type="button" id="addButton" (click)="addResturant()" class="btn btn-success btn-lg btn-block">Add A New Resturant!</button>
+      </div>
+    </div>
+
+
+
+  <div class="col">
+    <div class="rightside">
+      <!-- Google Map -->
+      <input id="pac-input" class="controls" type="text" placeholder="Enter a resturant name!"/>
+      <div id="map"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
