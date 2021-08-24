@@ -31,8 +31,7 @@ import { AuthGuard } from './guards/auth-guard';
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {path: '', component: MainPageComponent},
-      {path: 'login', component: LoginPageComponent},
+      {path: '', component: LoginPageComponent},
       {path: 'register', component: RegisterPageComponent},
       {path: 'home', component: UserPageComponent, canActivate: [AuthGuard]},
       {path: '**', component: ErrorPageComponent},

@@ -9,7 +9,7 @@ export class WebServiceService {
   readonly ROOT_URL: String;
 
   constructor(private http: HttpClient) { 
-    this.ROOT_URL = 'http://localhost:3000';
+    this.ROOT_URL = 'http://localhost:8080';
   }
 
   get(uri: string){

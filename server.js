@@ -11,13 +11,11 @@ const RSA_PRIVATE_KEY = fs.readFileSync('src/app/shared/private.key');
 const RSA_PUBLIC_KEY = fs.readFileSync('src/app/shared/public.key');
 
 app.use(express.json());
-app.use(express.static(__dirname + 'dist/frest-app'));
-app.get("*", function (req, res){
-    const pathFile = path.join(__dirname,'src','index.html');
+app.use(express.static(path.join(__dirname,'dist/FRestApp')));
+app.get("/", function (req, res){
+    const pathFile = path.join(__dirname,'dist','FRestApp','index.html');
     res.sendFile(pathFile);
 });
-
-
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:4200"); // update to match the domain you will make the request from
