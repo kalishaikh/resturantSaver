@@ -186,7 +186,5 @@ app.post('/home', (req, res) =>{
     res.send(authHeader);
 })
 
-app.listen(process.env.PORT || 8080, function() {
-    console.log(proccess.env.PORT);
-});
+app.listen(process.env.PORT || 8080);
 
