@@ -13,8 +13,8 @@ const RSA_PUBLIC_KEY = fs.readFileSync('src/app/shared/public.key');
 
 app.use(express.json());
 app.use(express.static(__dirname + 'dist/frest-app'));
-app.get("/*", function (req, res){
-    res.sendFile(path.join(__dirname+"/dist/frest-app/index.html"))
+app.get("*", function (req, res){
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 
