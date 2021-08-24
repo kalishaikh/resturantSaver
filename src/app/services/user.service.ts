@@ -4,7 +4,6 @@ import { WebServiceService } from './web-service.service';
 import { Router } from '@angular/router';
 import { constants } from 'src/assets/constants/constants';
 import { HttpParams } from '@angular/common/http';
-import * as moment from 'moment';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -24,7 +23,7 @@ export class UserService {
     return this.webService.post('register', { email, password, name })
     .pipe(
       tap(res => {
-        if(this.isLoggedOut() && res != constants.USER_ALREADY_EXISTS){
+        if(res != constants.USER_ALREADY_EXISTS){
           this.setSession(res);
           this.router.navigate(['home']);
         }
@@ -94,24 +93,9 @@ export class UserService {
 
   private setSession(authResult: any){
     const response = JSON.parse(authResult);
-    const expiresAt = moment().add(authResult.expiresIn,'second');
     localStorage.setItem('id_token', response.idToken);
-    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
     localStorage.setItem("name", response.name);
     localStorage.setItem("email", response.email);
   }
 
-  public isLoggedIn(){
-    return moment().isBefore(this.getExpiration());
-  }
-
-  isLoggedOut() {
-    return !this.isLoggedIn();
-}
-
-  getExpiration() {
-    const expiration = localStorage.getItem("expires_at");
-    const expiresAt = JSON.parse((expiration) || '{}');
-    return moment(expiresAt);
-  }    
 }
