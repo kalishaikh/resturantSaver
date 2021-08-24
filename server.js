@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 const mongoose = require('./src/db/mongoose');
 const bcrypt = require('bcrypt');
 const { User } = require('./src/db/models/user.model');
@@ -11,6 +12,12 @@ const RSA_PUBLIC_KEY = fs.readFileSync('src/app/shared/public.key');
 
 
 app.use(express.json());
+app.use(express.static(__dirname + 'dist/frest-app'));
+app.get("/*", function (req, res){
+    res.sendFile(path.join(__dirname+"/dist/frest-app/index.html"))
+});
+
+
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:4200"); // update to match the domain you will make the request from
@@ -181,7 +188,5 @@ app.post('/home', (req, res) =>{
     res.send(authHeader);
 })
 
-app.listen(3000, () => {
-    console.log("Server is listening on port 3000")
-    })
+app.listen(process.env.PORT || 8080);
 
