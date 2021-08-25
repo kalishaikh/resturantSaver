@@ -25,7 +25,7 @@ export class UserService {
       tap(res => {
         if(res != constants.USER_ALREADY_EXISTS){
           this.setSession(res);
-          this.router.navigate(['']);
+          this.router.navigate(['/home']);
         }
       })
     )
@@ -88,11 +88,12 @@ export class UserService {
     localStorage.removeItem('expires_at');
     localStorage.removeItem('name');
     localStorage.removeItem('email');
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
   }
 
   private setSession(authResult: any){
     const response = JSON.parse(authResult);
+    console.log(response);
     localStorage.setItem('id_token', response.idToken);
     localStorage.setItem("name", response.name);
     localStorage.setItem("email", response.email);

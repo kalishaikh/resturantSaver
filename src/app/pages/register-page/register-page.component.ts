@@ -43,7 +43,6 @@ export class RegisterPageComponent implements OnInit {
 
     else{
       this.userService.registerUser(email, password, name).subscribe((response: any) =>{
-        console.log(response);
         if(response == constants.USER_ALREADY_EXISTS){
           this.errorMsg = "User already exists in database";
         }

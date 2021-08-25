@@ -12,11 +12,15 @@ const RSA_PUBLIC_KEY = fs.readFileSync('src/app/shared/public.key');
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname,'dist/FRestApp')));
-app.get("*", function (req, res){
+
+app.get("/", function (req, res){
     const pathFile = path.join(__dirname,'dist','FRestApp','index.html');
     res.sendFile(pathFile);
 });
 
+app.get("/register", function (req, res){
+    res.redirect("/register");
+})
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:4200"); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
@@ -55,7 +59,6 @@ app.get('/getResturants', (req,res) => {
 
 
 app.post('/addResturants', (req,res) => {
-    console.log("/addResturants called");
     restName = req.body.resturantName;
     restAddy = req.body.resturantAddress;
     userEmail = req.body.email;
@@ -107,7 +110,8 @@ app.post('/register', (req,res) => {
                         res.status(200).json({
                             idToken: jwtBearerToken, 
                             expiresIn: 120,
-                            name: postedName
+                            name: postedName,
+                            email: postedEmail
                           });
                     }
                 });

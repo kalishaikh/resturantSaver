@@ -111,16 +111,12 @@ export class UserPageComponent implements OnInit {
 
     this.userService.refreshNeeded.subscribe(() => {
       this.userService.getResturants(localStorage.getItem('email')!).subscribe ((response : any ) => {
-        console.log("This route sent");
-        if(response[0].favouriteResturants) {
           this.resturants = response[0].favouriteResturants;
-        }
       });
     })
 
     this.userService.getResturants(localStorage.getItem('email')!).subscribe ((response : any ) => {
-      console.log("This route sent");
-      if(response[0].favouriteResturants) {
+      if(response[0]) {
         this.resturants = response[0].favouriteResturants;
         }
       });  
