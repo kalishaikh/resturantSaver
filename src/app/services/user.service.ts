@@ -77,7 +77,7 @@ export class UserService {
         }
         else{
           this.setSession(res);
-          this.router.navigate(['home']);
+          this.router.navigate(['/home']);
         }
       })
     )
