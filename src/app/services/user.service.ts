@@ -25,7 +25,7 @@ export class UserService {
       tap(res => {
         if(res != constants.USER_ALREADY_EXISTS){
           this.setSession(res);
-          this.router.navigate(['home']);
+          this.router.navigate(['']);
         }
       })
     )
