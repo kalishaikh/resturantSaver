@@ -9,7 +9,7 @@ export class WebServiceService {
   readonly ROOT_URL: String;
 
   constructor(private http: HttpClient) { 
-    this.ROOT_URL = 'http://localhost:8080';
+    this.ROOT_URL = 'https://resturant-chooser.herokuapp.com';
   }
 
   get(uri: string){
